@@ -81,11 +81,37 @@ Además de `register` y `login`, esta versión incluye recursos para manejar pro
 Se añadió `postman_collection.json` con los requests principales (register, login, projects CRUD, tasks CRUD). Importa ese archivo en Postman para probar rápidamente la API.
 
 ## Preparar la evidencia para entrega
-Instrucciones rápidas para empaquetar la evidencia (ver `EVIDENCE_INSTRUCTIONS.md` para detalles completos):
+Sigue estos pasos para generar la carpeta comprimida requerida por la evidencia (nombre y contenido mínimos):
 
-1. Crear un archivo `REPO_LINK.txt` con la URL del repositorio (ej.: `https://github.com/lrossas9/Constructrack-API`).
-2. Comprimir la carpeta del proyecto y nombrar el ZIP como `LAURA_ROSAS_AA5_EV03.zip`.
-3. Verificar que estén incluidos: `index.js`, `package.json`, `ENDPOINTS.md`, `TESTING.md`, `postman_collection.json`, `EVIDENCE_INSTRUCTIONS.md` y `README.md`.
+1. Verifica que el repositorio remoto contiene todo el código (enlace en la sección "Información del Aprendiz").
+2. En la raíz del proyecto crea el archivo `REPO_LINK.txt` con la URL pública del repositorio. Ejemplo:
+
+```text
+https://github.com/lrossas9/Constructrack-API
+```
+
+3. Archivos mínimos que deben incluirse en la entrega (recomendado):
+- `index.js` — código del servidor.
+- `package.json` y `package-lock.json` — para instalar dependencias con `npm install`.
+- `ENDPOINTS.md` — documentación detallada de los servicios.
+- `TESTING.md` — pasos y casos de prueba (curl / Postman).
+- `postman_collection.json` — colección para importar en Postman.
+- `README.md` — información del aprendiz y resumen del proyecto.
+
+4. No es necesario incluir `node_modules/` (el evaluador puede ejecutar `npm install`).
+
+5. Comprima la carpeta del proyecto y nombre el archivo exactamente así: `LAURA_ROSAS_AA5_EV03.zip` (reemplaza con tu nombre y apellido según el formato solicitado).
+
+Ejemplo de PowerShell para crear el ZIP:
+
+```powershell
+Set-Content -Path .\REPO_LINK.txt -Value 'https://github.com/lrossas9/Constructrack-API'
+Compress-Archive -Path .\* -DestinationPath ..\LAURA_ROSAS_AA5_EV03.zip -Force
+```
+
+6. Abra el ZIP y comprueba que los archivos listados en el paso 3 estén presentes antes de subirlo a la plataforma de la actividad.
+
+> Nota: `postman_collection.json` y `TESTING.md` facilitan la evaluación y son altamente recomendados.
 
 ## Estado del repositorio
 Los cambios recientes (endpoints, documentación, colección Postman, instrucciones de evidencia) están commiteados y pusheados a la rama `main` en el repositorio público indicado al inicio del `README`.
