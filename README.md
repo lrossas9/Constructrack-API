@@ -59,3 +59,33 @@ Para una descripción detallada de cada endpoint, incluyendo los formatos de pet
 Para probar la API, puedes usar herramientas como [Postman](https://www.postman.com/) o `curl`.
 
 En el archivo [TESTING.md](TESTING.md) encontrarás una guía paso a paso sobre cómo realizar las pruebas con Postman para cada uno de los casos de uso (registro exitoso, usuario duplicado, inicio de sesión correcto, credenciales incorrectas, etc.).
+
+## Resumen rápido de endpoints añadidos
+Además de `register` y `login`, esta versión incluye recursos para manejar proyectos y tareas (implementación de demostración en memoria):
+
+- `GET /projects` — Listar proyectos
+- `POST /projects` — Crear proyecto
+- `GET /projects/:id` — Obtener proyecto por id
+- `PUT /projects/:id` — Actualizar proyecto
+- `DELETE /projects/:id` — Eliminar proyecto
+
+- `GET /tasks` — Listar tareas (opcional `?projectId=`)
+- `POST /tasks` — Crear tarea
+- `GET /tasks/:id` — Obtener tarea
+- `PUT /tasks/:id` — Actualizar tarea
+- `DELETE /tasks/:id` — Eliminar tarea
+
+> Nota: los datos se almacenan en memoria (arrays) para la evidencia; al reiniciar el servidor se pierden los datos.
+
+## Colección Postman
+Se añadió `postman_collection.json` con los requests principales (register, login, projects CRUD, tasks CRUD). Importa ese archivo en Postman para probar rápidamente la API.
+
+## Preparar la evidencia para entrega
+Instrucciones rápidas para empaquetar la evidencia (ver `EVIDENCE_INSTRUCTIONS.md` para detalles completos):
+
+1. Crear un archivo `REPO_LINK.txt` con la URL del repositorio (ej.: `https://github.com/lrossas9/Constructrack-API`).
+2. Comprimir la carpeta del proyecto y nombrar el ZIP como `LAURA_ROSAS_AA5_EV03.zip`.
+3. Verificar que estén incluidos: `index.js`, `package.json`, `ENDPOINTS.md`, `TESTING.md`, `postman_collection.json`, `EVIDENCE_INSTRUCTIONS.md` y `README.md`.
+
+## Estado del repositorio
+Los cambios recientes (endpoints, documentación, colección Postman, instrucciones de evidencia) están commiteados y pusheados a la rama `main` en el repositorio público indicado al inicio del `README`.
