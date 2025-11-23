@@ -1,0 +1,106 @@
+{
+  "info": {
+    "name": "Constructrack-API",
+    "_postman_id": "b1c9b8d2-0000-4000-8000-000000000000",
+    "description": "Colección Postman para probar los endpoints de Constructrack-API (evidencia GA7-220501096-AA5-EV03)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"username\":\"laura\",\"password\":\"secret\"}" },
+        "url": { "raw": "http://localhost:3001/register", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["register"] }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"username\":\"laura\",\"password\":\"secret\"}" },
+        "url": { "raw": "http://localhost:3001/login", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["login"] }
+      }
+    },
+    {
+      "name": "Create Project",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"name\":\"Proyecto Demo\",\"description\":\"Demo\",\"owner\":\"laura\"}" },
+        "url": { "raw": "http://localhost:3001/projects", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["projects"] }
+      }
+    },
+    {
+      "name": "List Projects",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:3001/projects", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["projects"] }
+      }
+    },
+    {
+      "name": "Get Project",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:3001/projects/:id", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["projects", ":id"] }
+      }
+    },
+    {
+      "name": "Update Project",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"name\":\"Proyecto Actualizado\"}" },
+        "url": { "raw": "http://localhost:3001/projects/:id", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["projects", ":id"] }
+      }
+    },
+    {
+      "name": "Delete Project",
+      "request": {
+        "method": "DELETE",
+        "url": { "raw": "http://localhost:3001/projects/:id", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["projects", ":id"] }
+      }
+    },
+    {
+      "name": "Create Task",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"projectId\":1,\"title\":\"Tarea inicial\"}" },
+        "url": { "raw": "http://localhost:3001/tasks", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["tasks"] }
+      }
+    },
+    {
+      "name": "List Tasks",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:3001/tasks", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["tasks"] }
+      }
+    },
+    {
+      "name": "Get Task",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:3001/tasks/:id", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["tasks", ":id"] }
+      }
+    },
+    {
+      "name": "Update Task",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"status\":\"in_progress\"}" },
+        "url": { "raw": "http://localhost:3001/tasks/:id", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["tasks", ":id"] }
+      }
+    },
+    {
+      "name": "Delete Task",
+      "request": {
+        "method": "DELETE",
+        "url": { "raw": "http://localhost:3001/tasks/:id", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["tasks", ":id"] }
+      }
+    }
+  ]
+}
