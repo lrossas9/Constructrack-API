@@ -38,9 +38,9 @@ public class UsuarioController {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getCorreo(), login.getContraseña()));
             Usuario u = usuarioService.findByCorreo(login.getCorreo());
             String token = jwtUtil.generateToken(u.getCorreo());
-            return ResponseEntity.ok(token);
+            return ResponseEntity.ok(java.util.Map.of("token", token));
         } catch (AuthenticationException ex) {
-            return ResponseEntity.status(401).body("Credenciales inválidas");
+            return ResponseEntity.status(401).body(java.util.Map.of("error", "Credenciales inválidas"));
         }
     }
 }
