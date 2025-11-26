@@ -1,0 +1,87 @@
+# Spring Boot
+*.class
+*.jar
+*.war
+*.ear
+target/
+.classpath
+.project
+.settings/
+.springBeans
+*.log
+
+# Maven
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+pom.xml.bak
+release.properties
+dependency-reduced-pom.xml
+.flattened-pom.xml
+
+# IDE
+.vscode/
+.idea/
+*.iml
+*.iws
+*.ipr
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+.directory
+
+# Build
+build/
+dist/
+*.jar
+*.war
+
+# Gradle
+.gradle
+gradle/
+
+# Node (frontend si aplica)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Database
+*.db
+*.sqlite
+*.h2.db
+
+# Uploads
+uploads/
+files/
+
+# Logs
+logs/
+*.log
+*.log.gz
+
+# Spring Boot specific
+spring-constructrack/.gradle
+spring-constructrack/.idea
+spring-constructrack/out
+spring-constructrack/build
+spring-constructrack/bin
+spring-constructrack/.classpath
+spring-constructrack/.project
+spring-constructrack/.settings
+spring-constructrack/.sts4-cache
+
+# Compiled class files
+spring-constructrack/target/
+
+# Maven
+spring-constructrack/.m2/
