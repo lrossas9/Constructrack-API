@@ -22,14 +22,17 @@ public class SwaggerConfig {
                 .info(new Info()
                         .title("Constructrack API")
                         .version("1.0.0")
-                        .description("API Backend para la gestión de proyectos de construcción\n\n" +
-                                "Esta API proporciona endpoints para:\n" +
-                                "- Autenticación de usuarios con JWT\n" +
-                                "- Gestión de proyectos de construcción\n" +
-                                "- Registro de actividades y seguimiento de avance\n" +
-                                "- Reportes diarios de obra\n" +
-                                "- Carga de evidencias (fotos/archivos)\n\n" +
-                                "Todos los endpoints excepto /api/auth/** y /api/usuarios/registro requieren autenticación mediante token JWT")
+                        .description("""
+                                API Backend para la gestión de proyectos de construcción
+                                
+                                Esta API proporciona endpoints para:
+                                - Autenticación de usuarios con JWT
+                                - Gestión de proyectos de construcción
+                                - Registro de actividades y seguimiento de avance
+                                - Reportes diarios de obra
+                                - Carga de evidencias (fotos/archivos)
+                                
+                                Todos los endpoints excepto /api/auth/** y /api/usuarios/registro requieren autenticación mediante token JWT""")
                         .contact(new Contact()
                                 .name("Equipo Constructrack")
                                 .email("info@constructrack.com")))

@@ -24,7 +24,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -151,7 +150,7 @@ public class ReporteDiarioController {
             String nombreUnico = UUID.randomUUID().toString() + "_" + nombreOriginal;
             
             // Crear directorio si no existe
-            Path directorioPath = Paths.get(DIRECTORIO_EVIDENCIAS);
+            Path directorioPath = Path.of(DIRECTORIO_EVIDENCIAS);
             Files.createDirectories(directorioPath);
             
             // Guardar archivo

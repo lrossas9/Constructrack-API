@@ -68,11 +68,11 @@ public class JwtTokenProvider {
      */
     public String obtenerNombreUsuario(String token) {
         return Jwts.parserBuilder()
-                .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
-                .build()
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject();
+            .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
+            .build()
+            .parseClaimsJws(token)
+            .getBody()
+            .getSubject();
     }
 
     /**
@@ -83,10 +83,10 @@ public class JwtTokenProvider {
      */
     public Long obtenerIdUsuario(String token) {
         Claims claims = Jwts.parserBuilder()
-                .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
+            .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
+            .build()
+            .parseClaimsJws(token)
+            .getBody();
 
         return claims.get("idUsuario", Long.class);
     }
@@ -99,10 +99,10 @@ public class JwtTokenProvider {
      */
     public boolean validarToken(String token) {
         try {
-            Jwts.parserBuilder()
-                    .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
-                    .build()
-                    .parseClaimsJws(token);
+                    Jwts.parserBuilder()
+                        .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
+                        .build()
+                        .parseClaimsJws(token);
             log.debug("Token válido");
             return true;
         } catch (Exception e) {
