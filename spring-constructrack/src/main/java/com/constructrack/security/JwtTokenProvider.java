@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,9 +32,9 @@ public class JwtTokenProvider {
     /**
      * Genera un token JWT para un usuario
      *
-     * @param idUsuario ID del usuario
+     * @param idUsuario     ID del usuario
      * @param nombreUsuario nombre del usuario
-     * @param rol rol del usuario
+     * @param rol           rol del usuario
      * @return token JWT generado
      */
     public String generarToken(Long idUsuario, String nombreUsuario, String rol) {
@@ -68,11 +67,11 @@ public class JwtTokenProvider {
      */
     public String obtenerNombreUsuario(String token) {
         return Jwts.parserBuilder()
-            .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
-            .build()
-            .parseClaimsJws(token)
-            .getBody()
-            .getSubject();
+                .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
     }
 
     /**
@@ -83,10 +82,10 @@ public class JwtTokenProvider {
      */
     public Long obtenerIdUsuario(String token) {
         Claims claims = Jwts.parserBuilder()
-            .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
-            .build()
-            .parseClaimsJws(token)
-            .getBody();
+                .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
 
         return claims.get("idUsuario", Long.class);
     }
@@ -99,10 +98,10 @@ public class JwtTokenProvider {
      */
     public boolean validarToken(String token) {
         try {
-                    Jwts.parserBuilder()
-                        .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
-                        .build()
-                        .parseClaimsJws(token);
+            Jwts.parserBuilder()
+                    .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
+                    .build()
+                    .parseClaimsJws(token);
             log.debug("Token válido");
             return true;
         } catch (Exception e) {

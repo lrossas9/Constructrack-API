@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * Configuración de seguridad Spring Security
@@ -28,23 +29,28 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authz -> authz
                         // Endpoints públicos (sin autenticación)
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/usuarios/registro").permitAll()
-                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
-                        
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/api/auth/**")).permitAll()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/api/usuarios/registro")).permitAll()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/swagger-ui/**")).permitAll()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/v3/api-docs/**")).permitAll()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/swagger-ui.html")).permitAll()
+
                         // Endpoints que requieren autenticación
-                        .requestMatchers(HttpMethod.GET, "/api/proyectos/**").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/api/proyectos/**").authenticated()
-                        .requestMatchers(HttpMethod.PUT, "/api/proyectos/**").authenticated()
-                        .requestMatchers(HttpMethod.DELETE, "/api/proyectos/**").authenticated()
-                        
-                        .requestMatchers("/api/usuarios/**").authenticated()
-                        .requestMatchers("/api/seguimiento/**").authenticated()
-                        .requestMatchers("/api/reportes/**").authenticated()
-                        
+                        .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/api/proyectos/**"))
+                        .authenticated()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/api/proyectos/**"))
+                        .authenticated()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.PUT, "/api/proyectos/**"))
+                        .authenticated()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.DELETE, "/api/proyectos/**"))
+                        .authenticated()
+
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/api/usuarios/**")).authenticated()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/api/seguimiento/**")).authenticated()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/api/reportes/**")).authenticated()
+
                         // Todos los demás requieren autenticación
-                        .anyRequest().authenticated()
-                )
+                        .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
