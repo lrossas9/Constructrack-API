@@ -25,6 +25,10 @@ La carpeta comprimida debe tener el nombre del aprendiz y número de la evidenci
 
 Para hacer el envío de la evidencia remítase al área de la actividad correspondiente y acceda al espacio: **diseño y desarrollo de servicios web - caso. GA7-220501096-AA5-EV01**.
 
+## Enlace al Repositorio de GitHub
+
+- **URL del Repositorio:** [https://github.com/lrossas9/Constructrack-API](https://github.com/lrossas9/Constructrack-API)
+
 ## Cómo ejecutar el proyecto (Paso a Paso)
 
 Sigue estas instrucciones detalladas para poner en funcionamiento la API en tu computador.
