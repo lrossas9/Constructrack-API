@@ -30,12 +30,14 @@ public class ProyectoService {
      * @param crearProyectoDTO datos del proyecto a crear
      * @return Proyecto creado
      */
+    @SuppressWarnings("null")
     public Proyecto crearProyecto(CrearProyectoDTO crearProyectoDTO) {
         log.info("Creando nuevo proyecto: {}", crearProyectoDTO.getNombre());
 
         // Validar que las fechas sean válidas
         if (crearProyectoDTO.getFechaFin().isBefore(crearProyectoDTO.getFechaInicio())) {
-            log.warn("Fechas inválidas para proyecto: {} - {}", crearProyectoDTO.getFechaInicio(), crearProyectoDTO.getFechaFin());
+            log.warn("Fechas inválidas para proyecto: {} - {}", crearProyectoDTO.getFechaInicio(),
+                    crearProyectoDTO.getFechaFin());
             throw new IllegalArgumentException("La fecha de fin no puede ser anterior a la fecha de inicio");
         }
 
@@ -76,6 +78,7 @@ public class ProyectoService {
      * @throws IllegalArgumentException si no existe
      */
     @Transactional(readOnly = true)
+    @SuppressWarnings("null")
     public Proyecto obtenerProyectoPorId(Long idProyecto) {
         return proyectoRepository.findById(idProyecto)
                 .orElseThrow(() -> new IllegalArgumentException("Proyecto no encontrado"));
@@ -106,10 +109,11 @@ public class ProyectoService {
     /**
      * Actualiza un proyecto
      *
-     * @param idProyecto ID del proyecto
+     * @param idProyecto       ID del proyecto
      * @param crearProyectoDTO nuevos datos
      * @return Proyecto actualizado
      */
+    @SuppressWarnings("null")
     public Proyecto actualizarProyecto(Long idProyecto, CrearProyectoDTO crearProyectoDTO) {
         log.info("Actualizando proyecto: {}", idProyecto);
 
@@ -148,6 +152,7 @@ public class ProyectoService {
      *
      * @param idProyecto ID del proyecto a eliminar
      */
+    @SuppressWarnings("null")
     public void eliminarProyecto(Long idProyecto) {
         log.info("Eliminando proyecto: {}", idProyecto);
 

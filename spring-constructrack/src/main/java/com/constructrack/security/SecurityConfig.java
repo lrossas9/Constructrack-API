@@ -1,4 +1,7 @@
+
 package com.constructrack.security;
+
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +20,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  */
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -44,6 +48,7 @@ public class SecurityConfig {
                         .authenticated()
                         .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.DELETE, "/api/proyectos/**"))
                         .authenticated()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
 
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/api/usuarios/**")).authenticated()
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/api/seguimiento/**")).authenticated()
@@ -52,6 +57,9 @@ public class SecurityConfig {
                         // Todos los demás requieren autenticación
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+        // Permitir frames para H2 Console
+        http.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()));
 
         return http.build();
     }

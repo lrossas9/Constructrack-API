@@ -39,6 +39,7 @@ public class UsuarioService {
      * @return Usuario creado
      * @throws IllegalArgumentException si el usuario ya existe
      */
+    @SuppressWarnings("null")
     public Usuario registrarUsuario(RegistroUsuarioDTO registroDTO) {
         log.info("Registrando nuevo usuario: {}", registroDTO.getNombreUsuario());
 
@@ -95,7 +96,8 @@ public class UsuarioService {
         }
 
         // Generar token JWT
-        String token = jwtTokenProvider.generarToken(usuario.getIdUsuario(), usuario.getNombreUsuario(), usuario.getRol().toString());
+        String token = jwtTokenProvider.generarToken(usuario.getIdUsuario(), usuario.getNombreUsuario(),
+                usuario.getRol().toString());
 
         log.info("Usuario autenticado exitosamente: {}", usuario.getIdUsuario());
 
@@ -127,6 +129,7 @@ public class UsuarioService {
      * @throws IllegalArgumentException si no existe
      */
     @Transactional(readOnly = true)
+    @SuppressWarnings("null")
     public Usuario obtenerUsuarioPorId(Long idUsuario) {
         return usuarioRepository.findById(idUsuario)
                 .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
@@ -135,10 +138,11 @@ public class UsuarioService {
     /**
      * Actualiza el perfil de un usuario
      *
-     * @param idUsuario ID del usuario a actualizar
+     * @param idUsuario     ID del usuario a actualizar
      * @param actualizarDTO nuevos datos
      * @return Usuario actualizado
      */
+    @SuppressWarnings("null")
     public Usuario actualizarUsuario(Long idUsuario, ActualizarUsuarioDTO actualizarDTO) {
         log.info("Actualizando usuario: {}", idUsuario);
 
@@ -182,6 +186,7 @@ public class UsuarioService {
      *
      * @param idUsuario ID del usuario a desactivar
      */
+    @SuppressWarnings("null")
     public void desactivarUsuario(Long idUsuario) {
         log.info("Desactivando usuario: {}", idUsuario);
 

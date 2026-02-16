@@ -26,17 +26,19 @@ public class ActividadService {
     /**
      * Crea una nueva actividad para un proyecto
      *
-     * @param idProyecto ID del proyecto
+     * @param idProyecto        ID del proyecto
      * @param crearActividadDTO datos de la actividad
      * @return Actividad creada
      */
+    @SuppressWarnings("null")
     public Actividad crearActividad(Long idProyecto, CrearActividadDTO crearActividadDTO) {
         log.info("Creando nueva actividad para proyecto: {}", idProyecto);
 
         Proyecto proyecto = proyectoService.obtenerProyectoPorId(idProyecto);
 
         if (crearActividadDTO.getFechaFin().isBefore(crearActividadDTO.getFechaInicio())) {
-            log.warn("Fechas inválidas para actividad: {} - {}", crearActividadDTO.getFechaInicio(), crearActividadDTO.getFechaFin());
+            log.warn("Fechas inválidas para actividad: {} - {}", crearActividadDTO.getFechaInicio(),
+                    crearActividadDTO.getFechaFin());
             throw new IllegalArgumentException("La fecha de fin no puede ser anterior a la fecha de inicio");
         }
 
@@ -46,7 +48,8 @@ public class ActividadService {
         nuevaActividad.setFechaInicio(crearActividadDTO.getFechaInicio());
         nuevaActividad.setFechaFin(crearActividadDTO.getFechaFin());
         nuevaActividad.setEstado(crearActividadDTO.getEstado() != null ? crearActividadDTO.getEstado() : "PENDIENTE");
-        nuevaActividad.setPorcentajeAvance(crearActividadDTO.getPorcentajeAvance() != null ? crearActividadDTO.getPorcentajeAvance() : 0);
+        nuevaActividad.setPorcentajeAvance(
+                crearActividadDTO.getPorcentajeAvance() != null ? crearActividadDTO.getPorcentajeAvance() : 0);
         nuevaActividad.setResponsable(crearActividadDTO.getResponsable());
         nuevaActividad.setPresupuestoActividad(crearActividadDTO.getPresupuestoActividad());
         nuevaActividad.setProyecto(proyecto);
@@ -77,6 +80,7 @@ public class ActividadService {
      * @throws IllegalArgumentException si no existe
      */
     @Transactional(readOnly = true)
+    @SuppressWarnings("null")
     public Actividad obtenerActividadPorId(Long idActividad) {
         return actividadRepository.findById(idActividad)
                 .orElseThrow(() -> new IllegalArgumentException("Actividad no encontrada"));
@@ -85,10 +89,11 @@ public class ActividadService {
     /**
      * Actualiza una actividad
      *
-     * @param idActividad ID de la actividad
+     * @param idActividad       ID de la actividad
      * @param crearActividadDTO nuevos datos
      * @return Actividad actualizada
      */
+    @SuppressWarnings("null")
     public Actividad actualizarActividad(Long idActividad, CrearActividadDTO crearActividadDTO) {
         log.info("Actualizando actividad: {}", idActividad);
 
@@ -127,6 +132,7 @@ public class ActividadService {
      *
      * @param idActividad ID de la actividad a eliminar
      */
+    @SuppressWarnings("null")
     public void eliminarActividad(Long idActividad) {
         log.info("Eliminando actividad: {}", idActividad);
 

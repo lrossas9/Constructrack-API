@@ -35,6 +35,7 @@ public class ReporteDiarioService {
      * @param idUsuario ID del usuario que registra el reporte
      * @return ReporteDiario creado
      */
+    @SuppressWarnings("null")
     public ReporteDiario registrarReporteDiario(RegistrarReporteDiarioDTO registrarReporteDiarioDTO, Long idUsuario) {
         log.info("Registrando reporte diario para proyecto: {}", registrarReporteDiarioDTO.getIdProyecto());
 
@@ -97,6 +98,7 @@ public class ReporteDiarioService {
      * @throws IllegalArgumentException si no existe
      */
     @Transactional(readOnly = true)
+    @SuppressWarnings("null")
     public ReporteDiario obtenerReportePorId(Long idReporteDiario) {
         return reporteDiarioRepository.findById(idReporteDiario)
                 .orElseThrow(() -> new IllegalArgumentException("Reporte diario no encontrado"));
@@ -123,6 +125,7 @@ public class ReporteDiarioService {
      * @param registrarReporteDiarioDTO nuevos datos
      * @return ReporteDiario actualizado
      */
+    @SuppressWarnings("null")
     public ReporteDiario actualizarReporteDiario(Long idReporteDiario, RegistrarReporteDiarioDTO registrarReporteDiarioDTO) {
         log.info("Actualizando reporte diario: {}", idReporteDiario);
 
@@ -155,6 +158,7 @@ public class ReporteDiarioService {
      *
      * @param idReporteDiario ID del reporte a eliminar
      */
+    @SuppressWarnings("null")
     public void eliminarReporteDiario(Long idReporteDiario) {
         log.info("Eliminando reporte diario: {}", idReporteDiario);
 

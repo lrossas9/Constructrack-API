@@ -14,7 +14,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Filtro JWT - Intercepta todas las solicitudes y valida el token JWT
@@ -37,15 +36,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 String nombreUsuario = jwtTokenProvider.obtenerNombreUsuario(jwt);
                 String rol = jwtTokenProvider.obtenerRol(jwt);
 
-                // Crear autenticación y establecerla en el contexto de seguridad
-                UsernamePasswordAuthenticationToken authentication = 
-                    new UsernamePasswordAuthenticationToken(
-                            nombreUsuario, null, new ArrayList<>());
+                // Asignar el rol como autoridad para control de acceso
+                var authorities = java.util.List
+                        .of(new org.springframework.security.core.authority.SimpleGrantedAuthority("ROLE_" + rol));
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                        nombreUsuario, null, authorities);
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
 
-                log.debug("Autenticación establecida para usuario: {}", nombreUsuario);
+                log.debug("Autenticación establecida para usuario: {} con rol {}", nombreUsuario, rol);
             }
         } catch (Exception ex) {
             log.error("No se pudo establecer autenticación del usuario", ex);

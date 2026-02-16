@@ -26,15 +26,16 @@ public class EvidenciaService {
      * Registra una nueva evidencia (foto/archivo) para un reporte
      *
      * @param idReporteDiario ID del reporte
-     * @param nombreArchivo nombre del archivo
-     * @param rutaArchivo ruta donde se almacena el archivo
-     * @param tipoArchivo tipo de archivo (FOTO, DOCUMENTO, VIDEO, OTRO)
-     * @param tamanioBytes tamaño del archivo en bytes
-     * @param descripcion descripción de la evidencia
+     * @param nombreArchivo   nombre del archivo
+     * @param rutaArchivo     ruta donde se almacena el archivo
+     * @param tipoArchivo     tipo de archivo (FOTO, DOCUMENTO, VIDEO, OTRO)
+     * @param tamanioBytes    tamaño del archivo en bytes
+     * @param descripcion     descripción de la evidencia
      * @return Evidencia creada
      */
+    @SuppressWarnings("null")
     public Evidencia registrarEvidencia(Long idReporteDiario, String nombreArchivo, String rutaArchivo,
-                                       String tipoArchivo, Long tamanioBytes, String descripcion) {
+            String tipoArchivo, Long tamanioBytes, String descripcion) {
         log.info("Registrando evidencia para reporte: {}", idReporteDiario);
 
         ReporteDiario reporte = reporteDiarioService.obtenerReportePorId(idReporteDiario);
@@ -73,6 +74,7 @@ public class EvidenciaService {
      * @throws IllegalArgumentException si no existe
      */
     @Transactional(readOnly = true)
+    @SuppressWarnings("null")
     public Evidencia obtenerEvidenciaPorId(Long idEvidencia) {
         return evidenciaRepository.findById(idEvidencia)
                 .orElseThrow(() -> new IllegalArgumentException("Evidencia no encontrada"));
@@ -94,6 +96,7 @@ public class EvidenciaService {
      *
      * @param idEvidencia ID de la evidencia a eliminar
      */
+    @SuppressWarnings("null")
     public void eliminarEvidencia(Long idEvidencia) {
         log.info("Eliminando evidencia: {}", idEvidencia);
 

@@ -33,6 +33,7 @@ public class SeguimientoService {
      * @param registrarSeguimientoDTO datos del seguimiento
      * @return Seguimiento creado
      */
+    @SuppressWarnings("null")
     public Seguimiento registrarSeguimiento(RegistrarSeguimientoDTO registrarSeguimientoDTO) {
         log.info("Registrando seguimiento para proyecto: {}", registrarSeguimientoDTO.getIdProyecto());
 
@@ -117,6 +118,7 @@ public class SeguimientoService {
      * @throws IllegalArgumentException si no existe
      */
     @Transactional(readOnly = true)
+    @SuppressWarnings("null")
     public Seguimiento obtenerSeguimientoPorId(Long idSeguimiento) {
         return seguimientoRepository.findById(idSeguimiento)
                 .orElseThrow(() -> new IllegalArgumentException("Seguimiento no encontrado"));
@@ -129,6 +131,7 @@ public class SeguimientoService {
      * @param registrarSeguimientoDTO nuevos datos
      * @return Seguimiento actualizado
      */
+    @SuppressWarnings("null")
     public Seguimiento actualizarSeguimiento(Long idSeguimiento, RegistrarSeguimientoDTO registrarSeguimientoDTO) {
         log.info("Actualizando seguimiento: {}", idSeguimiento);
 
@@ -158,6 +161,7 @@ public class SeguimientoService {
      *
      * @param idSeguimiento ID del seguimiento a eliminar
      */
+    @SuppressWarnings("null")
     public void eliminarSeguimiento(Long idSeguimiento) {
         log.info("Eliminando seguimiento: {}", idSeguimiento);
 
